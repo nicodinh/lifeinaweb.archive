@@ -21,12 +21,17 @@
     "start": "NODE_ENV=production next start -p 3000"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "easy-peasy": "^3.3.0",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-
+    "postcss-preset-env": "^6.7.0",
+    "prettier-standard": "^16.1.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "tailwindcss": "^1.2.0"
   }
 }
