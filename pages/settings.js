@@ -1,3 +1,4 @@
+import React from 'react'
 import '../styles/index.css'
 
 export default () => (
@@ -36,33 +37,5 @@ export default () => (
         </div>
       </div>
     </nav>
-    {/* <div className='grid grid-cols-3 gap-4'>
-    <div className='p-4 shadow rounded bg-white text-center shadow-lg'>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>logo</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-    <div className='p-4 shadow rounded bg-white text-center'>
-      <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-    </div>
-  </div> */}
   </>
 )

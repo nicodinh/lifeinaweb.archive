@@ -7,11 +7,6 @@ import { initializeStore } from '../store'
 class MyApp extends App {
   render () {
     const { Component, pageProps, store } = this.props
-
-    console.log('__STORE__', store)
-
-    // Workaround for https://github.com/zeit/next.js/issues/8592
-    // const { err } = this.props
     const modifiedPageProps = { ...pageProps }
 
     return (

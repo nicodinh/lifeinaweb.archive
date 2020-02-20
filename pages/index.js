@@ -1,3 +1,4 @@
+import React from 'react'
 import '../styles/index.css'
 
 export default () => (
@@ -9,11 +10,6 @@ export default () => (
       <div className='flex items-center flex-shrink-0 text-white mr-4'>
         <img src='/logo.svg' style={{ height: 80 }} />
       </div>
-      {/* <div className="block lg:hidden">
-        <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-          <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-        </button>
-      </div> */}
       <div className='w-full block flex-grow lg:flex lg:items-center lg:w-auto'>
         <div className='text-xl lg:flex-grow font-semibold'>
           <a
@@ -40,31 +36,16 @@ export default () => (
         </div>
       </div>
     </nav>
-    <div className='grid grid-cols-3 gap-4'>
-      <div className='p-4 shadow rounded bg-white text-center shadow-lg'></div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
+
+    <div class='flex flex-wrap -mx-2'>
+      <div class='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
+        <div class='h-64 p-4 shadow rounded bg-white text-center'>a</div>
       </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
+      <div class='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
+        <div class='h-64 p-4 shadow rounded bg-white text-center'>a</div>
       </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-      </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>logo</h1>
-      </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-      </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-      </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
-      </div>
-      <div className='p-4 shadow rounded bg-white text-center'>
-        <h1 className='text-purple-500 leading-relaxed'>lifeinaweb</h1>
+      <div class='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
+        <div class='h-64 p-4 shadow rounded bg-white text-center'>a</div>
       </div>
     </div>
   </>
