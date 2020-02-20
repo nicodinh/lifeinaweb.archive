@@ -5,7 +5,7 @@ export default () => (
   <>
     <nav
       className='flex items-center justify-between flex-wrap p-6 rounded-lg mb-4'
-      style={{ backgroundColor: 'rgb(54,188,238)' }}
+      style={{ backgroundColor: '#15bef0' }}
     >
       <div className='flex items-center flex-shrink-0 text-white mr-4'>
         <img src='/logo.svg' style={{ height: 80 }} />
