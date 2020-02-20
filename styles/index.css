@@ -7,5 +7,6 @@
 @import "tailwindcss/utilities"; */
 
 body {
+  background-image: url("/background-lifeina-web.png");
   @apply bg-blue-500 p-12;
 }
