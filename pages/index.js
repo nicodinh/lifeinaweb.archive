@@ -71,17 +71,49 @@ export default () => (
             >
               <VictoryLegend
                 x={60}
-                y={0}
+                y={2}
                 title='Temperature'
                 centerTitle
                 orientation='horizontal'
                 gutter={20}
-                style={{ border: { stroke: 'black' }, title: { fontSize: 20 } }}
+                style={{ border: { stroke: 'black' }, title: { fontSize: 16 } }}
                 data={[
                   { name: 'Min.', symbol: { fill: 'green' } },
                   { name: 'Max.', symbol: { fill: 'green' } },
                   { name: 'Temp.', symbol: { fill: 'blue' } }
                 ]}
+              />
+              <VictoryLine
+                data={[
+                  { x: -10, y: 8 },
+                  { x: 0, y: 8 }
+                ]}
+                domain={{
+                  x: [0, 0],
+                  y: [-10, 15]
+                }}
+                scale={{ x: 'time', y: 'linear' }}
+                standalone={false}
+                style={{
+                  data: { stroke: 'green', strokeWidth: 2 },
+                  parent: { border: '1px solid #ccc' }
+                }}
+              />
+              <VictoryLine
+                data={[
+                  { x: -10, y: 2 },
+                  { x: 0, y: 2 }
+                ]}
+                domain={{
+                  x: [0, 0],
+                  y: [-10, 15]
+                }}
+                scale={{ x: 'time', y: 'linear' }}
+                standalone={false}
+                style={{
+                  data: { stroke: 'green', strokeWidth: 2 },
+                  parent: { border: '1px solid #ccc' }
+                }}
               />
               <VictoryLine
                 style={{
@@ -105,32 +137,32 @@ export default () => (
         <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
           {/* content3 */}
           <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
-            <VictoryChart theme={VictoryTheme.material}>
+            <VictoryChart
+              domain={{ x: [-10, 0], y: [0, 100] }}
+              theme={VictoryTheme.material}
+            >
               <VictoryLegend
-                x={0}
-                y={50}
+                x={130}
+                y={2}
                 title='Battery'
                 centerTitle
                 orientation='horizontal'
                 gutter={20}
-                style={{ border: { stroke: 'black' }, title: { fontSize: 20 } }}
-                data={[
-                  { name: 'Min.', symbol: { fill: 'green' } },
-                  { name: 'Max.', symbol: { fill: 'green' } },
-                  { name: 'Temp.', symbol: { fill: 'gold' } }
-                ]}
+                style={{ border: { stroke: 'black' }, title: { fontSize: 16 } }}
+                data={[{ name: 'Charge. %', symbol: { fill: 'green' } }]}
               />
               <VictoryLine
                 style={{
-                  data: { stroke: '#c43a31' },
+                  data: { stroke: 'green' },
                   parent: { border: '1px solid #ccc' }
                 }}
                 data={[
-                  { x: 1, y: 2 },
-                  { x: 2, y: 3 },
-                  { x: 3, y: 5 },
-                  { x: 4, y: 4 },
-                  { x: 5, y: 7 }
+                  { x: -10, y: 100 },
+                  { x: -8, y: 80 },
+                  { x: -6, y: 40 },
+                  { x: -2, y: 55 },
+                  { x: -1, y: 60 },
+                  { x: 0, y: 80 }
                 ]}
               />
             </VictoryChart>
