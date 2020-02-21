@@ -39,33 +39,29 @@ export default () => (
 
     <div className='flex flex-wrap -mx-2'>
       <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
-        <div className='h-auto p-4 shadow rounded bg-white text-center'>
+        <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
           {/* content1 */}
-          <div className='max-w-sm w-full lg:max-w-full lg:flex'>
-            {/* <div
-              className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden'
-              style={{ backgroundImage: 'url(' + '/lifeinabox.jpg' + ')' }}
-              title='lifeinabox'
-            ></div> */}
-            <div className='border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal'>
-              {/* <div className='mb-8'>
-                <p className='text-sm text-gray-600 flex items-center'>
-                  #1 LifeinaBox
-                </p>
-              </div> */}
-              {/* <div className="flex items-center">
-                <div className="text-sm">
-                  <p className="text-gray-900 leading-none">Jonathan Reinink</p>
-                  <p className="text-gray-600">Aug 18</p>
-                </div>
-              </div> */}
+          <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
+            <img className='w-full' src='/lifeinabox.jpg' title='lifeinabox' />
+            <div className='px-6 py-4'>
+              <div className='font-bold text-gray-600 text-lg mb-2'>
+                #1 LifeinaBox
+              </div>
+            </div>
+            <div className='px-6 py-4 '>
+              <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
+                6 °C
+              </span>
+              <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
+                90 %
+              </span>
             </div>
           </div>
           {/* content1 */}
         </div>
       </div>
       <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
-        <div className='h-64 p-4 shadow rounded bg-white text-center'>
+        <div className='h-auto p-4 shadow rounded bg-white text-center'>
           {/* content2 */}
 
           {/* content2 */}
