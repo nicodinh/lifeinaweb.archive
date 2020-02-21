@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/index.css'
+import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
 
 export default () => (
   <>
@@ -31,7 +32,7 @@ export default () => (
             href='#'
             className='inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0'
           >
-            Find my lifeinabox
+            Find my LifeinaBox
           </a>
         </div>
       </div>
@@ -61,16 +62,79 @@ export default () => (
         </div>
       </div>
       <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
-        <div className='h-auto p-4 shadow rounded bg-white text-center'>
+        <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
           {/* content2 */}
-
+          <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
+            <VictoryChart
+              domain={{ x: [-10, 0], y: [0, 10] }}
+              theme={VictoryTheme.material}
+            >
+              <VictoryLegend
+                x={60}
+                y={0}
+                title='Temperature'
+                centerTitle
+                orientation='horizontal'
+                gutter={20}
+                style={{ border: { stroke: 'black' }, title: { fontSize: 20 } }}
+                data={[
+                  { name: 'Min.', symbol: { fill: 'green' } },
+                  { name: 'Max.', symbol: { fill: 'green' } },
+                  { name: 'Temp.', symbol: { fill: 'blue' } }
+                ]}
+              />
+              <VictoryLine
+                style={{
+                  data: { stroke: 'blue' },
+                  parent: { border: '1px solid #ccc' }
+                }}
+                data={[
+                  { x: -4, y: 4.5 },
+                  { x: -3, y: 4.8 },
+                  { x: -2, y: 4.8 },
+                  { x: -1, y: 4.6 },
+                  { x: 0, y: 4.6 }
+                ]}
+              />
+            </VictoryChart>
+          </div>
           {/* content2 */}
         </div>
       </div>
       <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
-        <div className='h-64 p-4 shadow rounded bg-white text-center'>
+        <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
           {/* content3 */}
-
+          <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
+            <VictoryChart theme={VictoryTheme.material}>
+              <VictoryLegend
+                x={0}
+                y={50}
+                title='Battery'
+                centerTitle
+                orientation='horizontal'
+                gutter={20}
+                style={{ border: { stroke: 'black' }, title: { fontSize: 20 } }}
+                data={[
+                  { name: 'Min.', symbol: { fill: 'green' } },
+                  { name: 'Max.', symbol: { fill: 'green' } },
+                  { name: 'Temp.', symbol: { fill: 'gold' } }
+                ]}
+              />
+              <VictoryLine
+                style={{
+                  data: { stroke: '#c43a31' },
+                  parent: { border: '1px solid #ccc' }
+                }}
+                data={[
+                  { x: 1, y: 2 },
+                  { x: 2, y: 3 },
+                  { x: 3, y: 5 },
+                  { x: 4, y: 4 },
+                  { x: 5, y: 7 }
+                ]}
+              />
+            </VictoryChart>
+          </div>
           {/* content3 */}
         </div>
       </div>

@@ -36,6 +36,7 @@
     "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest",
+    "victory": "^34.1.1",
     "yup": "^0.28.1"
   },
   "devDependencies": {
