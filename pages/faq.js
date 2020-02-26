@@ -46,6 +46,6 @@ export default () => (
       </div>
     </nav>
 
-    <div>Settings</div>
+    <div>FAQ</div>
   </>
 )

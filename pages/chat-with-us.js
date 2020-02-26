@@ -46,6 +46,14 @@ export default () => (
       </div>
     </nav>
 
-    <div>Settings</div>
+    <div>
+      <iframe
+        src='https://discordapp.com/widget?id=664781778170413056&theme=dark'
+        width='350'
+        height='500'
+        allowtransparency='true'
+        frameborder='0'
+      ></iframe>
+    </div>
   </>
 )
