@@ -72,7 +72,10 @@ export default () => {
         </div>
       </nav>
 
-      <div className='flex flex-wrap -mx-2'>
+      <div
+        className='flex flex-wrap -mx-2'
+        style={{ backgroundColor: '#fefaf0' }}
+      >
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content1 */}
