@@ -2,11 +2,15 @@ import React from 'react'
 import '../styles/index.css'
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
 import { useStoreState } from 'easy-peasy'
+// import Bluetooth from '../components/Bluetooth'
 
 export default () => {
-  const { lifeinaboxName, lifeinaboxService } = useStoreState(
-    state => state.device
-  )
+  const {
+    lifeinaboxName,
+    lifeinaboxService,
+    lifeinaboxCharacteristicNotify,
+    lifeinaboxCharacteristic
+  } = useStoreState(state => state.device)
 
   const onClickButton = async e => {
     e.preventDefault()
@@ -17,8 +21,11 @@ export default () => {
         optionalServices: [lifeinaboxService]
       })
       const server = await device.gatt.connect()
-      console.info(device)
-      console.info(server)
+      const deviceConnected = server.connected ? 'yes' : 'no'
+
+      console.log(device.name)
+      console.log(device.id)
+      console.log(deviceConnected)
     } catch (error) {
       console.error(error)
     }
@@ -218,6 +225,7 @@ export default () => {
           </div>
         </div>
       </div>
+      {/* <Bluetooth /> */}
     </>
   )
 }
