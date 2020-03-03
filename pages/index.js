@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/index.css'
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
-import { useStoreState } from 'easy-peasy'
+import { useStoreState, useStoreActions, action } from 'easy-peasy'
 // import Bluetooth from '../components/Bluetooth'
 
 export default () => {
@@ -12,6 +12,10 @@ export default () => {
     lifeinaboxCharacteristic
   } = useStoreState(state => state.device)
 
+  const { updateDeviceID, updateIsConnected } = useStoreActions(
+    actions => actions.device
+  )
+
   const onClickButton = async e => {
     e.preventDefault()
 
@@ -21,11 +25,14 @@ export default () => {
         optionalServices: [lifeinaboxService]
       })
       const server = await device.gatt.connect()
-      const deviceConnected = server.connected ? 'yes' : 'no'
+      updateDeviceID(device.id)
+      updateIsConnected(server.connected)
+
+      // const deviceConnected = server.connected ? true : false
 
       console.log(device.name)
       console.log(device.id)
-      console.log(deviceConnected)
+      console.log(server.connected)
     } catch (error) {
       console.error(error)
     }
@@ -80,13 +87,13 @@ export default () => {
       </nav>
 
       <div
-        className='flex flex-wrap -mx-2'
+        className='flex flex-wrap -mx-2 shadow rounded'
         style={{ backgroundColor: '#fefaf0' }}
       >
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content1 */}
-            <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
+            <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
               <img
                 className='w-full'
                 src='/lifeinabox.jpg'
@@ -112,7 +119,7 @@ export default () => {
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content2 */}
-            <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
+            <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
               <VictoryChart
                 domain={{ x: [-10, 0], y: [0, 10] }}
                 theme={VictoryTheme.material}
@@ -187,7 +194,7 @@ export default () => {
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content3 */}
-            <div className='max-w-sm rounded overflow-hidden shadow-lg m-auto bg-orange-100'>
+            <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
               <VictoryChart
                 domain={{ x: [-10, 0], y: [0, 100] }}
                 theme={VictoryTheme.material}

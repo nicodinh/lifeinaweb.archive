@@ -1,9 +1,7 @@
 import { action } from 'easy-peasy'
 
 const temperatureModel = {
-  value: 0,
-  values: [],
-  unity: 'C'
+  values: []
 }
 
 export default temperatureModel

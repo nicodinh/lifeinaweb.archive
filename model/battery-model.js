@@ -1,9 +1,7 @@
 import { action } from 'easy-peasy'
 
 const batteryModel = {
-  value: 0,
-  values: [],
-  unity: '%'
+  values: []
 }
 
 export default batteryModel
