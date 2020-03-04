@@ -1,15 +1,11 @@
 import React from 'react'
 import '../styles/index.css'
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
-import { useStoreState, useStoreActions, action } from 'easy-peasy'
-// import Bluetooth from '../components/Bluetooth'
-import { BatteryChart } from '../components/BatteryChart'
-import { TemperatureChart } from '../components/temperatureChart'
-import { LifeinaBoxStats } from '../components/LifeinaBoxStats'
-import { lastBatteryBuffer } from '../lib/lastBatteryBuffer'
-import { lastTemperatureBuffer } from '../lib/lastTemperatureBuffer'
+import { useStoreState, useStoreActions } from 'easy-peasy'
+import { LifeinaBoxStats, BatteryChart, TemperatureChart } from '../components/'
+import { lastBatteryBuffer, lastTemperatureBuffer } from '../lib/'
 
 export default () => {
+  // Device Model
   const {
     lifeinaboxName,
     lifeinaboxService,
@@ -20,6 +16,15 @@ export default () => {
   const { updateDeviceID, updateIsConnected } = useStoreActions(
     actions => actions.device
   )
+
+  // Temperature Model
+  const temperatureValues = useStoreState(state => state.temperature.values)
+
+  // Battery Model
+  const batteryValues = useStoreState(state => state.battery.values)
+
+  // Settings Model
+  const { pollInterval, unit } = useStoreState(state => state.settings)
 
   let myCharacteristicNotify = null
   let interval = null
@@ -98,6 +103,7 @@ export default () => {
         optionalServices: [lifeinaboxService]
       })
       const server = await device.gatt.connect()
+
       updateDeviceID(device.id)
       updateIsConnected(server.connected)
 
@@ -105,11 +111,7 @@ export default () => {
       myCharacteristicNotify = await service.getCharacteristic(
         lifeinaboxCharacteristicNotify
       )
-
-      console.log(myCharacteristicNotify)
-
       await myCharacteristicNotify.startNotifications()
-
       myCharacteristicNotify.addEventListener(
         'characteristicvaluechanged',
         handleNotifications
@@ -119,15 +121,10 @@ export default () => {
         lifeinaboxCharacteristic
       )
 
-      // initial values
-      await myCharacteristic.writeValue(lastTemperatureBuffer)
-      await myCharacteristic.writeValue(lastBatteryBuffer)
-
       interval = setInterval(async () => {
         await myCharacteristic.writeValue(lastTemperatureBuffer)
         await myCharacteristic.writeValue(lastBatteryBuffer)
-        console.log('interval')
-      }, 1000) //600000
+      }, pollInterval)
     } catch (error) {
       console.error(error)
     }
