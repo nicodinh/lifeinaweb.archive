@@ -2,9 +2,8 @@ import React from 'react'
 import { useStoreState } from 'easy-peasy'
 
 const LifeinaBoxStats = () => {
-  const { value } = useStoreState(state => state.temperature)
-
-  // console.log(value)
+  const temperatureValue = useStoreState(state => state.temperature.value)
+  const batteryValue = useStoreState(state => state.battery.value)
 
   return (
     <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
@@ -15,12 +14,16 @@ const LifeinaBoxStats = () => {
         </div>
       </div>
       <div className='px-6 py-4 '>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
-          {value} °C
-        </span>
-        <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
-          90 %
-        </span>
+        {temperatureValue ? (
+          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
+            {`${temperatureValue} °C`}
+          </span>
+        ) : null}
+        {batteryValue ? (
+          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
+            {`${batteryValue} %`}
+          </span>
+        ) : null}
       </div>
     </div>
   )
