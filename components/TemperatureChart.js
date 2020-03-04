@@ -65,7 +65,8 @@ const TemperatureChart = () => {
             data: { stroke: 'blue' },
             parent: { border: '1px solid #ccc' }
           }}
-          data={values.length > 11 ? chartValues : []}
+          // data={values.length > 11 ? chartValues : []}
+          data={values.length > 1 ? chartValues : []}
         />
       </VictoryChart>
     </div>
