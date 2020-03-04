@@ -4,61 +4,6 @@ import { celciusToFahrenheit } from '../lib/celciusToFahrenheit'
 
 let myCharacteristicNotify = null
 
-const connect = async () => {
-  const {
-    lifeinaboxName,
-    lifeinaboxService,
-    lifeinaboxCharacteristicNotify,
-    lifeinaboxCharacteristic
-  } = useStoreState(state => state.device)
-
-  try {
-    const device = await navigator.bluetooth.requestDevice({
-      filters: [{ name: lifeinaboxName }],
-      optionalServices: [lifeinaboxService]
-    })
-    const server = await device.gatt.connect()
-    const deviceConnected = server.connected ? 'yes' : 'no'
-
-    console.log(device.name)
-    console.log(device.id)
-    console.log(deviceConnected)
-
-    // this.setState({
-    //   deviceName: device.name,
-    //   deviceID: device.id,
-    //   deviceConnected
-    // })
-
-    const service = await server.getPrimaryService(lifeinaboxService)
-
-    myCharacteristicNotify = await service.getCharacteristic(
-      lifeinaboxCharacteristicNotify
-    )
-    await myCharacteristicNotify.startNotifications()
-    // myCharacteristicNotify.addEventListener(
-    //   'characteristicvaluechanged',
-    //   this.handleNotifications
-    // )
-
-    const commandTMP1H = new Uint8Array([0xaa, 0x8f, 0x01, 0x55])
-    const commandBATTERY = new Uint8Array([0xaa, 0x8e, 0xff, 0x55])
-    const myCharacteristic = await service.getCharacteristic(
-      lifeinaboxCharacteristic
-    )
-    await myCharacteristic.writeValue(commandTMP1H)
-    await myCharacteristic.writeValue(commandBATTERY)
-    // this.interval = setInterval(async () => {
-    //   await myCharacteristic.writeValue(commandTMP1H)
-    //   await myCharacteristic.writeValue(commandBATTERY)
-    //   console.log('interval')
-    // }, 1000) //600000
-  } catch (error) {
-    console.log('Argh! ' + error)
-  }
-  return <div>coucou</div>
-}
-
 class Bluetooth extends React.Component {
   constructor (props) {
     super(props)
