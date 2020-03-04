@@ -3,6 +3,9 @@ import '../styles/index.css'
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
 import { useStoreState, useStoreActions, action } from 'easy-peasy'
 // import Bluetooth from '../components/Bluetooth'
+import { BatteryChart } from '../components/BatteryChart'
+import { TemperatureChart } from '../components/temperatureChart'
+import { LifeinaBoxStats } from '../components/LifeinaBoxStats'
 
 export default () => {
   const {
@@ -16,6 +19,8 @@ export default () => {
     actions => actions.device
   )
 
+  let myCharacteristicNotify = null
+
   const onClickButton = async e => {
     e.preventDefault()
 
@@ -28,11 +33,14 @@ export default () => {
       updateDeviceID(device.id)
       updateIsConnected(server.connected)
 
-      // const deviceConnected = server.connected ? true : false
+      const service = await server.getPrimaryService(lifeinaboxService)
+      myCharacteristicNotify = await service.getCharacteristic(
+        lifeinaboxCharacteristicNotify
+      )
 
-      console.log(device.name)
-      console.log(device.id)
-      console.log(server.connected)
+      console.log(myCharacteristicNotify)
+
+      await myCharacteristicNotify.startNotifications()
     } catch (error) {
       console.error(error)
     }
@@ -93,141 +101,21 @@ export default () => {
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content1 */}
-            <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
-              <img
-                className='w-full'
-                src='/lifeinabox.jpg'
-                title='lifeinabox'
-              />
-              <div className='px-6 py-4'>
-                <div className='font-bold text-gray-600 text-lg mb-2'>
-                  #1 LifeinaBox
-                </div>
-              </div>
-              <div className='px-6 py-4 '>
-                <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
-                  6 °C
-                </span>
-                <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
-                  90 %
-                </span>
-              </div>
-            </div>
+            <LifeinaBoxStats />
             {/* content1 */}
           </div>
         </div>
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content2 */}
-            <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
-              <VictoryChart
-                domain={{ x: [-10, 0], y: [0, 10] }}
-                theme={VictoryTheme.material}
-              >
-                <VictoryLegend
-                  x={60}
-                  y={2}
-                  title='Temperature'
-                  centerTitle
-                  orientation='horizontal'
-                  gutter={20}
-                  style={{
-                    border: { stroke: 'black' },
-                    title: { fontSize: 16 }
-                  }}
-                  data={[
-                    { name: 'Min.', symbol: { fill: 'green' } },
-                    { name: 'Max.', symbol: { fill: 'green' } },
-                    { name: 'Temp.', symbol: { fill: 'blue' } }
-                  ]}
-                />
-                <VictoryLine
-                  data={[
-                    { x: -10, y: 8 },
-                    { x: 0, y: 8 }
-                  ]}
-                  domain={{
-                    x: [0, 0],
-                    y: [-10, 15]
-                  }}
-                  scale={{ x: 'time', y: 'linear' }}
-                  standalone={false}
-                  style={{
-                    data: { stroke: 'green', strokeWidth: 2 },
-                    parent: { border: '1px solid #ccc' }
-                  }}
-                />
-                <VictoryLine
-                  data={[
-                    { x: -10, y: 2 },
-                    { x: 0, y: 2 }
-                  ]}
-                  domain={{
-                    x: [0, 0],
-                    y: [-10, 15]
-                  }}
-                  scale={{ x: 'time', y: 'linear' }}
-                  standalone={false}
-                  style={{
-                    data: { stroke: 'green', strokeWidth: 2 },
-                    parent: { border: '1px solid #ccc' }
-                  }}
-                />
-                <VictoryLine
-                  style={{
-                    data: { stroke: 'blue' },
-                    parent: { border: '1px solid #ccc' }
-                  }}
-                  data={[
-                    { x: -4, y: 4.5 },
-                    { x: -3, y: 4.8 },
-                    { x: -2, y: 4.8 },
-                    { x: -1, y: 4.6 },
-                    { x: 0, y: 4.6 }
-                  ]}
-                />
-              </VictoryChart>
-            </div>
+            <TemperatureChart />
             {/* content2 */}
           </div>
         </div>
         <div className='w-full sm:w-full md:w-1/3 lg:w-1/3 xl:w-1/3 px-2 mb-4'>
           <div className='h-auto p-4 /*shadow rounded bg-white*/ text-center'>
             {/* content3 */}
-            <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
-              <VictoryChart
-                domain={{ x: [-10, 0], y: [0, 100] }}
-                theme={VictoryTheme.material}
-              >
-                <VictoryLegend
-                  x={130}
-                  y={2}
-                  title='Battery'
-                  centerTitle
-                  orientation='horizontal'
-                  gutter={20}
-                  style={{
-                    border: { stroke: 'black' },
-                    title: { fontSize: 16 }
-                  }}
-                  data={[{ name: 'Charge. %', symbol: { fill: 'green' } }]}
-                />
-                <VictoryLine
-                  style={{
-                    data: { stroke: 'green' },
-                    parent: { border: '1px solid #ccc' }
-                  }}
-                  data={[
-                    { x: -10, y: 100 },
-                    { x: -8, y: 80 },
-                    { x: -6, y: 40 },
-                    { x: -2, y: 55 },
-                    { x: -1, y: 60 },
-                    { x: 0, y: 80 }
-                  ]}
-                />
-              </VictoryChart>
-            </div>
+            <BatteryChart />
             {/* content3 */}
           </div>
         </div>
