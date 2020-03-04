@@ -1,7 +1,10 @@
 import React from 'react'
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
+import { useStoreState } from 'easy-peasy'
 
 const TemperatureChart = () => {
+  const { chartValues, values } = useStoreState(state => state.temperature)
+
   return (
     <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
       <VictoryChart
@@ -62,13 +65,7 @@ const TemperatureChart = () => {
             data: { stroke: 'blue' },
             parent: { border: '1px solid #ccc' }
           }}
-          data={[
-            { x: -4, y: 4.5 },
-            { x: -3, y: 4.8 },
-            { x: -2, y: 4.8 },
-            { x: -1, y: 4.6 },
-            { x: 0, y: 4.6 }
-          ]}
+          data={values.length > 11 ? chartValues : []}
         />
       </VictoryChart>
     </div>

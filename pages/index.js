@@ -20,6 +20,10 @@ export default () => {
   // Temperature Model
   const temperatureValues = useStoreState(state => state.temperature.values)
 
+  const addTemperature = useStoreActions(
+    actions => actions.temperature.addValue
+  )
+
   // Battery Model
   const batteryValues = useStoreState(state => state.battery.values)
 
@@ -43,7 +47,8 @@ export default () => {
       const hex2dec = parseInt(a[2], 16)
       const celcius = hex2dec / 10
 
-      console.log(celcius)
+      // console.log(celcius)
+      addTemperature(celcius)
 
       // this.setState({
       //   temperatureC: celcius,
