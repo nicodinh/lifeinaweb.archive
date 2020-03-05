@@ -2,6 +2,7 @@ import React from 'react'
 import { useStoreState, useStoreActions } from 'easy-peasy'
 import { lastBatteryBuffer, lastTemperatureBuffer } from '../lib/'
 
+let device = null
 let myCharacteristicNotify = null
 let interval = null
 
@@ -86,7 +87,7 @@ const FindButton = () => {
     e.preventDefault()
 
     try {
-      const device = await navigator.bluetooth.requestDevice({
+      device = await navigator.bluetooth.requestDevice({
         filters: [{ name: lifeinaboxName }],
         optionalServices: [lifeinaboxService]
       })
@@ -118,11 +119,9 @@ const FindButton = () => {
     }
   }
 
-  const onClickDisconnectButton = e => {
-    e.preventDefault()
-
+  const onClickDisconnectButton = () => {
     // remove listeners
-    if (myCharacteristicNotify && interval) {
+    if (myCharacteristicNotify && interval && device) {
       myCharacteristicNotify.removeEventListener(
         'characteristicvaluechanged',
         handleNotifications,
@@ -134,14 +133,15 @@ const FindButton = () => {
       myCharacteristicNotify = null
       interval = null
 
-      // and reset redux
-      try {
-        resetDevice()
-        resetBattery()
-        resetTemperature()
-      } catch (error) {
-        console.log(error)
+      // disconnecting from Bluetooth Device
+      if (device.gatt.connected) {
+        device.gatt.disconnect()
       }
+
+      // and reset redux
+      resetDevice()
+      resetBattery()
+      resetTemperature()
     }
   }
 
