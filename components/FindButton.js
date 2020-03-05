@@ -118,7 +118,7 @@ const FindButton = () => {
     }
   }
 
-  const onClickDisconnectButton = async e => {
+  const onClickDisconnectButton = e => {
     e.preventDefault()
 
     // remove listeners
@@ -133,15 +133,15 @@ const FindButton = () => {
       // and clean them
       myCharacteristicNotify = null
       interval = null
-    }
 
-    // and reset redux
-    try {
-      await resetBattery()
-      await resetDevice()
-      await resetTemperature()
-    } catch (error) {
-      console.log(error)
+      // and reset redux
+      try {
+        resetDevice()
+        resetBattery()
+        resetTemperature()
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
