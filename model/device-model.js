@@ -7,6 +7,9 @@ const deviceModel = {
   lifeinaboxCharacteristic: 'd44bc439-abfd-45a2-b575-925416129600',
   deviceID: '',
   isConnected: false,
+  reset: action(state => {
+    ;(state.deviceID = ''), (state.isConnected = false)
+  }),
   updateDeviceID: action((state, payload) => {
     state.deviceID = payload
   }),

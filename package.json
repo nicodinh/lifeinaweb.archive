@@ -37,6 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest",
+    "styled-components": "^5.0.1",
     "victory": "^34.1.1",
     "yup": "^0.28.1"
   },

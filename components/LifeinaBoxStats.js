@@ -4,6 +4,7 @@ import { useStoreState } from 'easy-peasy'
 const LifeinaBoxStats = () => {
   const temperatureValue = useStoreState(state => state.temperature.value)
   const batteryValue = useStoreState(state => state.battery.value)
+  const batteryStatus = useStoreState(state => state.battery.status)
 
   return (
     <div className='max-w-sm rounded overflow-hidden m-auto bg-orange-100'>
@@ -22,6 +23,11 @@ const LifeinaBoxStats = () => {
         {batteryValue ? (
           <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
             {`${batteryValue} %`}
+          </span>
+        ) : null}
+        {batteryStatus ? (
+          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
+            {`${batteryStatus}`}
           </span>
         ) : null}
       </div>

@@ -2,12 +2,14 @@ import temperatureModel from './temperature-model'
 import batteryModel from './battery-model'
 import settingsModel from './settings-model'
 import deviceModel from './device-model'
+import uiModel from './ui-model'
 
 const storeModel = {
   temperature: temperatureModel,
   battery: batteryModel,
   settings: settingsModel,
-  device: deviceModel
+  device: deviceModel,
+  ui: uiModel
   // devices: [
   //   {1: {temperature: temperatureModel}},
   //   {2: {temperature: temperatureModel}},

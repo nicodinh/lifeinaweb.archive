@@ -1,5 +1,11 @@
 import React from 'react'
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryLegend } from 'victory'
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryTheme,
+  VictoryLegend,
+  VictoryContainer
+} from 'victory'
 import { useStoreState } from 'easy-peasy'
 
 const TemperatureChart = () => {
@@ -10,6 +16,15 @@ const TemperatureChart = () => {
       <VictoryChart
         domain={{ x: [-10, 0], y: [0, 10] }}
         theme={VictoryTheme.material}
+        containerComponent={
+          <VictoryContainer
+            style={{
+              userSelect: 'auto !important',
+              pointerEvents: 'auto !important',
+              touchAction: 'auto !important'
+            }}
+          />
+        }
       >
         <VictoryLegend
           x={60}
@@ -62,10 +77,9 @@ const TemperatureChart = () => {
         />
         <VictoryLine
           style={{
-            data: { stroke: 'blue' },
+            data: { stroke: 'blue', strokeWidth: 2 },
             parent: { border: '1px solid #ccc' }
           }}
-          // data={values.length > 11 ? chartValues : []}
           data={values.length > 1 ? chartValues : []}
         />
       </VictoryChart>

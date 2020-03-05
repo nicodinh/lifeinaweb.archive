@@ -3,6 +3,9 @@ import { nth } from 'lodash'
 
 const temperatureModel = {
   values: [],
+  reset: action(state => {
+    state.values = []
+  }),
   addValue: action((state, payload) => {
     state.values.push(payload)
   }),
