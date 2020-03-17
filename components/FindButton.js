@@ -54,7 +54,10 @@ const FindButton = () => {
       const hex2dec = parseInt(a[2], 16)
       const celcius = hex2dec / 10
 
-      // console.log(celcius)
+      console.log(unit)
+      console.log(celcius)
+      console.log(celciusToFahrenheit(celcius))
+
       unit === 'C'
         ? addTemperature(celcius)
         : addTemperature(celciusToFahrenheit(celcius))
