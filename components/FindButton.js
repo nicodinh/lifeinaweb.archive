@@ -1,10 +1,6 @@
 import React from 'react'
 import { useStoreState, useStoreActions } from 'easy-peasy'
-import {
-  lastBatteryBuffer,
-  lastTemperatureBuffer,
-  celciusToFahrenheit
-} from '../lib/'
+import { lastBatteryBuffer, lastTemperatureBuffer } from '../lib/'
 
 let device = null
 let myCharacteristicNotify = null
@@ -26,9 +22,7 @@ const FindButton = () => {
   const resetDevice = useStoreActions(actions => actions.device.reset)
 
   // Temperature Model
-  const addTemperature = useStoreActions(
-    actions => actions.temperature.addValue
-  )
+  const { prepareValue } = useStoreActions(actions => actions.temperature)
   const resetTemperature = useStoreActions(actions => actions.temperature.reset)
   // Battery Model
   const addBatteryValue = useStoreActions(actions => actions.battery.addValue)
@@ -54,13 +48,7 @@ const FindButton = () => {
       const hex2dec = parseInt(a[2], 16)
       const celcius = hex2dec / 10
 
-      console.log(unit)
-      console.log(celcius)
-      console.log(celciusToFahrenheit(celcius))
-
-      unit === 'C'
-        ? addTemperature(celcius)
-        : addTemperature(celciusToFahrenheit(celcius))
+      prepareValue(celcius)
     }
 
     if (hexString.substr(0, 4) === 'aa8e') {

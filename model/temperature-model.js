@@ -1,5 +1,6 @@
-import { action, computed } from 'easy-peasy'
+import { action, computed, thunk } from 'easy-peasy'
 import { nth } from 'lodash'
+import { celciusToFahrenheit } from '../lib/'
 
 const temperatureModel = {
   values: [],
@@ -24,6 +25,11 @@ const temperatureModel = {
       { x: -9, y: nth(state.values, -10) || 0 },
       { x: -10, y: nth(state.values, -11) || 0 }
     ]
+  }),
+  prepareValue: thunk((actions, payload, { getState, getStoreState }) => {
+    const unit = getStoreState().settings.unit
+    const value = unit === 'C' ? payload : celciusToFahrenheit(payload)
+    actions.addValue(value)
   })
 }
 

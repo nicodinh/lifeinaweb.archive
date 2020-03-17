@@ -1,6 +1,5 @@
 import React from 'react'
 import { useStoreState } from 'easy-peasy'
-import { celciusToFahrenheit } from '../lib/'
 
 const LifeinaBoxStats = () => {
   const temperatureValue = useStoreState(state => state.temperature.value)
@@ -23,7 +22,7 @@ const LifeinaBoxStats = () => {
           </span>
         ) : temperatureValue && unit === 'F' ? (
           <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-gray-700 mr-2'>
-            {`${celciusToFahrenheit(temperatureValue)} °F`}
+            {`${temperatureValue} °F`}
           </span>
         ) : null}
         {batteryValue ? (
