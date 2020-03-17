@@ -1,6 +1,10 @@
 import React from 'react'
 import { useStoreState, useStoreActions } from 'easy-peasy'
-import { lastBatteryBuffer, lastTemperatureBuffer } from '../lib/'
+import {
+  lastBatteryBuffer,
+  lastTemperatureBuffer,
+  celciusToFahrenheit
+} from '../lib/'
 
 let device = null
 let myCharacteristicNotify = null
@@ -51,7 +55,9 @@ const FindButton = () => {
       const celcius = hex2dec / 10
 
       // console.log(celcius)
-      addTemperature(celcius)
+      unit === 'C'
+        ? addTemperature(celcius)
+        : addTemperature(celciusToFahrenheit(celcius))
     }
 
     if (hexString.substr(0, 4) === 'aa8e') {
