@@ -31,6 +31,13 @@ const Nav = () => {
               Chat with us
             </a>
           </Link>
+          <a
+            href='https://github.com/Lifeina/lifeinaweb'
+            target='_blank'
+            className='block mt-4 lg:inline-block lg:mt-0 text-white hover:text-teal-100 mr-4'
+          >
+            GitHub
+          </a>
         </div>
 
         <div>
