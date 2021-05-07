@@ -84,7 +84,7 @@ const FindButton = () => {
     e.preventDefault()
 
     try {
-      device = await Bluetooth.requestDevice({
+      device = await navigator.bluetooth.requestDevice({
         filters: [{ name: lifeinaboxName }],
         optionalServices: [lifeinaboxService]
       })
