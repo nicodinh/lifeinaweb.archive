@@ -1,5 +1,3 @@
-/// <reference types="web-bluetooth" />
-
 import React from 'react'
 import { useStoreState, useStoreActions } from 'easy-peasy'
 import { lastBatteryBuffer, lastTemperatureBuffer } from '../lib/'
